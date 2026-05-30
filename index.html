@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>언양고 정보 동아리 포트폴리오</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6',
+                            neon: '#10b981',
+                            dark: '#0f172a',
+                            darklight: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons for design elements -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Pretendard:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .neon-glow:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            border-color: #3b82f6;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+    <script>
+        // 페이지 로드 시 기존 테마 설정을 확인하여 적용
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+<body class="overflow-x-hidden bg-slate-50 text-slate-800 dark:bg-[#0b0f19] dark:text-e2e8f0">
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-[#0b0f19]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <span class="text-brand-blue font-bold text-xl code-font">&lt;STUDENT.DEV /&gt;</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold">
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-blue transition-colors">소개</a>
+                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-blue transition-colors">프로젝트</a>
+                <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-blue transition-colors">기술 스택</a>
+                <a href="#playground" class="text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-blue transition-colors">샌드박스</a>
+            </nav>
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <!-- 다크모드 토글 버튼 -->
+                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-400 flex items-center justify-center transition-all duration-300 focus:outline-none" aria-label="테마 전환">
+                    <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <span class="hidden sm:inline-block bg-brand-blue/10 text-brand-blue border border-brand-blue/30 px-3 py-1 rounded-full text-xs font-semibold">
+                    언양고등학교 정보동아리
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-32 pb-20 md:py-40 flex items-center justify-center overflow-hidden">
+        <!-- Background Grid Effect -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-30 transition-colors duration-300"></div>
+        
+        <div class="relative max-w-4xl mx-auto px-4 text-center z-10">
+            <div class="inline-flex items-center space-x-2 bg-slate-200/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-full px-4 py-1.5 mb-6 text-sm transition-colors duration-300">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-neon animate-pulse"></span>
+                <span class="text-slate-700 dark:text-slate-300">개발과 탐구를 즐기는 학생 개발자</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white">
+                <span class="gradient-text">코드의 정석</span>입니다.
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+                언양고등학교 정보 동아리에서 활동하며 세상을 이롭게 할 소프트웨어를 고민하고 만듭니다. 데이터를 분석하고, 알고리즘을 설계하고, 눈으로 직접 보는 인터렉티브 웹 개발을 좋아합니다.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#projects" class="w-full sm:w-auto bg-brand-blue hover:bg-blue-600 text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-brand-blue/20">
+                    프로젝트 구경하기
+                </a>
+                <a href="#playground" class="w-full sm:w-auto bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold px-8 py-3.5 rounded-xl transition-all duration-200">
+                    미니 샌드박스 실행
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800/50 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-5 flex justify-center">
+                    <!-- Profile Card -->
+                    <div class="relative w-64 h-64 sm:w-72 sm:h-72 bg-gradient-to-tr from-brand-blue to-brand-purple p-1 rounded-3xl shadow-xl">
+                        <div class="w-full h-full bg-white dark:bg-[#0b0f19] rounded-[22px] flex flex-col items-center justify-center p-6 text-center transition-colors duration-300">
+                            <div class="w-24 h-24 rounded-full bg-brand-blue/10 dark:bg-brand-blue/20 border-2 border-brand-blue flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-laptop-code text-4xl text-brand-blue"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">학생 개발자 (Developer)</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">언양고등학교 3학년</p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                                <a href="mailto:developer@example.com" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"><i class="fa-solid fa-envelope text-xl"></i></a>
+                                <span class="text-brand-neon bg-brand-neon/10 text-xs px-2.5 py-1 rounded-full font-semibold border border-brand-neon/20">정보 동아리 부원</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-user-check text-brand-blue mr-3"></i>
+                        소개합니다!
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                        저는 기술이 학교 생활과 지역 사회의 문제를 해결할 수 있을 때 가장 큰 보람을 느낍니다. 우리 고장 울산의 지역 현안부터 매일 겪는 학교 내부의 소소한 불편함까지, <strong>"코딩으로 해결할 수 있는 방법은 없을까?"</strong>를 늘 고민합니다.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl transition-colors duration-300 shadow-sm dark:shadow-none">
+                            <div class="text-brand-blue font-bold text-lg mb-1">📍 Local Focus</div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">울산/언양 지역의 데이터 분석 및 스마트 도시 문제 해결에 관심이 많습니다.</p>
+                        </div>
+                        <div class="p-4 bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/60 rounded-xl transition-colors duration-300 shadow-sm dark:shadow-none">
+                            <div class="text-brand-purple font-bold text-lg mb-1">💡 Creativity</div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">아이디어를 기획하는 것에 그치지 않고, 실제로 동작하는 프로토타입으로 개발해 냅니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (Interactive Cards) -->
+    <section id="projects" class="py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 text-slate-900 dark:text-white">My Projects</h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-lg mx-auto">동아리 활동 기간 동안 집중하여 개발한 대표 프로젝트 3가지를 소개합니다. 카드를 선택하면 세부 정보와 인터랙티브 데모를 확인할 수 있습니다.</p>
+            </div>
+
+            <!-- Interactive Tab buttons for projects -->
+            <div class="flex justify-center flex-wrap gap-2 sm:gap-4 mb-12">
+                <button onclick="switchProject(1)" id="tab-btn-1" class="project-tab-btn active bg-brand-blue text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all shadow-md">
+                    🚦 울산 교통 흐름 AI
+                </button>
+                <button onclick="switchProject(2)" id="tab-btn-2" class="project-tab-btn bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-xl font-semibold text-sm border border-slate-200 dark:border-slate-700/60 transition-all">
+                    🍱 학교 급식 알리미
+                </button>
+                <button onclick="switchProject(3)" id="tab-btn-3" class="project-tab-btn bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-xl font-semibold text-sm border border-slate-200 dark:border-slate-700/60 transition-all">
+                    🪴 IoT 스마트 화분
+                </button>
+            </div>
+
+            <!-- Project Contents Container -->
+            <div class="bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-10 shadow-xl dark:shadow-2xl relative transition-colors duration-300">
+                
+                <!-- Project 1: 울산 교통 흐름 AI -->
+                <div id="project-card-1" class="project-card grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="text-xs font-bold px-3 py-1 bg-brand-blue/10 dark:bg-brand-blue/20 text-brand-blue border border-brand-blue/20 dark:border-brand-blue/30 rounded-full uppercase">AI & Data</span>
+                            <span class="text-xs font-bold px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-full">개인 프로젝트</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">울산 주요 교차로 교통량 예측 및 신호 제어 알고리즘 탐구</h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                            울산시 공공데이터포털의 교차로 교통량 데이터를 수집 및 전처리하여, 시간대별 차량 이동 흐름을 예측하고 최적의 신호등 유지 시간을 계산하는 시뮬레이션 모델입니다. 등하교 시간 언양 터미널 근처 교차로의 정체 현상을 관찰하고 해결해보고자 기획한 연구 프로젝트입니다.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">주요 기능</h4>
+                            <ul class="space-y-2.5 text-slate-600 dark:text-slate-300 text-sm">
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-blue mt-1 mr-2.5"></i> 울산 오픈 API 기반 시간대별 차량 대수 수집 및 학습</li>
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-blue mt-1 mr-2.5"></i> 대기 차량 비율(Queue Length)에 따른 가변 신호 알고리즘 제안</li>
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-blue mt-1 mr-2.5"></i> 웹 시각화 대시보드로 실시간 신호 조정 결과 확인</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">Python</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">Pandas</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">Scikit-learn</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">Chart.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Side: Simulating Traffic -->
+                    <div class="lg:col-span-5 bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 transition-colors duration-300 shadow-sm dark:shadow-none">
+                        <h4 class="text-md font-bold text-slate-800 dark:text-white mb-4 flex items-center">
+                            <i class="fa-solid fa-sliders text-brand-blue mr-2"></i> 신호 제어 시뮬레이터 데모
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">가상의 삼거리 차량 밀도를 조정하여, 인공지능 기반 신호 알고리즘의 평균 대기 시간 절감 효과를 모니터링해보세요.</p>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-2">
+                                    <span class="text-slate-600 dark:text-slate-300">A 도로 (언양읍성 방향) 차량 밀도</span>
+                                    <span id="density-a-val" class="text-brand-blue font-bold">50%</span>
+                                </div>
+                                <input type="range" id="density-a" min="10" max="100" value="50" oninput="runTrafficSim()" class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-blue">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-2">
+                                    <span class="text-slate-600 dark:text-slate-300">B 도로 (울산역 방향) 차량 밀도</span>
+                                    <span id="density-b-val" class="text-brand-purple font-bold">30%</span>
+                                </div>
+                                <input type="range" id="density-b" min="10" max="100" value="30" oninput="runTrafficSim()" class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-purple">
+                            </div>
+                        </div>
+
+                        <!-- Sim Result Window -->
+                        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 space-y-3 transition-colors duration-300 shadow-sm dark:shadow-none">
+                            <div class="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800 pb-2">
+                                <span>상태: <span class="text-brand-neon font-semibold">시뮬레이션 활성화</span></span>
+                                <span class="code-font text-brand-blue">AI-v1.4.2</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div class="bg-slate-50 dark:bg-slate-950/60 p-3 rounded-lg border border-slate-200 dark:border-slate-800/40 transition-colors duration-300">
+                                    <div class="text-slate-500 dark:text-slate-400 text-[10px] uppercase font-semibold">일반 신호 지체 시간</div>
+                                    <div id="delay-normal" class="text-xl font-bold text-red-500 dark:text-red-400 code-font mt-1">45s</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-950/60 p-3 rounded-lg border border-slate-200 dark:border-brand-neon/20 transition-colors duration-300">
+                                    <div class="text-brand-neon text-[10px] uppercase font-semibold">AI 가변 신호 지체 시간</div>
+                                    <div id="delay-ai" class="text-xl font-bold text-brand-neon code-font mt-1">28s</div>
+                                </div>
+                            </div>
+                            <div class="text-center text-xs bg-brand-neon/5 border border-brand-neon/25 text-brand-neon py-2 rounded-lg font-medium">
+                                <i class="fa-solid fa-bolt mr-1"></i> 지체 시간이 평균 <span id="delay-percent" class="font-bold">37%</span> 단축되었습니다!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: 학교 급식 알리미 -->
+                <div id="project-card-2" class="project-card hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="text-xs font-bold px-3 py-1 bg-brand-purple/10 dark:bg-brand-purple/20 text-brand-purple border border-brand-purple/20 dark:border-brand-purple/30 rounded-full uppercase">Web App</span>
+                            <span class="text-xs font-bold px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-full">공동 프로젝트 (기획/웹 개발)</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">언양고 스마트 급식 알리미 & 영양 챗봇</h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                            교육부 NEIS 오픈 API를 연동하여 우리 학교의 일일 급식 메뉴를 실시간으로 받아오고, ChatGPT API(Gemini)를 활용하여 알레르기 유발 물질 확인 및 주간 영양 균형 레포트를 작성해주는 모바일 친화형 웹 애플리케이션입니다. 학생들의 건강한 급식 선택을 돕습니다.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">주요 기능</h4>
+                            <ul class="space-y-2.5 text-slate-600 dark:text-slate-300 text-sm">
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-purple mt-1 mr-2.5"></i> NEIS 교육 정보 개방 포털 API 실시간 연동 (언양고등학교 기준)</li>
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-purple mt-1 mr-2.5"></i> 본인의 알레르기 정보를 저장해 두면 해당 식단 자동 경고/강조 기능</li>
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-purple mt-1 mr-2.5"></i> 해당 일자 메뉴에 함유된 탄단지(탄수화물, 단백질, 지방) 비율 시각화</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">HTML5/CSS3</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">JavaScript</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">NEIS API</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">TailwindCSS</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Side: Lunch Viewer Mockup -->
+                    <div class="lg:col-span-5 bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 transition-colors duration-300 shadow-sm dark:shadow-none">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-md font-bold text-slate-800 dark:text-white flex items-center">
+                                <i class="fa-solid fa-utensils text-brand-purple mr-2"></i> 실시간 급식 영양 분석 시뮬
+                            </h4>
+                            <span class="text-[11px] text-slate-500 dark:text-slate-400">내일의 식단</span>
+                        </div>
+                        
+                        <!-- Mini Phone Mockup -->
+                        <div class="bg-white dark:bg-[#0b0f19] border border-slate-200 dark:border-slate-800 rounded-2xl p-4 text-center max-w-sm mx-auto transition-colors duration-300 shadow-md dark:shadow-none">
+                            <div class="bg-brand-purple/10 text-brand-purple text-xs font-semibold px-3 py-1 rounded-full inline-block mb-3">
+                                🏫 언양고등학교 급식실
+                            </div>
+                            <div class="text-sm font-bold text-slate-800 dark:text-slate-300 mb-2">오늘의 중식 메뉴</div>
+                            
+                            <div class="space-y-1 mb-4 text-slate-600 dark:text-slate-400 text-xs">
+                                <p>현미밥</p>
+                                <p class="text-slate-800 dark:text-slate-300 font-medium">매콤돼지갈비찜 <span class="text-amber-500 dark:text-amber-400 font-semibold">[돼지/대두/밀]</span></p>
+                                <p>순두부찌개 <span class="text-amber-500 dark:text-amber-400 text-[10px]">[조개/알류]</span></p>
+                                <p>감자채볶음</p>
+                                <p class="text-slate-800 dark:text-slate-300 font-medium">배추김치</p>
+                                <p>수박 (후식)</p>
+                            </div>
+
+                            <!-- Interactive Button to run nutrition check -->
+                            <button onclick="checkNutrition()" class="w-full bg-brand-purple hover:bg-purple-600 text-white text-xs font-semibold py-2.5 rounded-xl transition-all mb-4 shadow-sm">
+                                <i class="fa-solid fa-chart-pie mr-1"></i> 이 식단 인공지능 분석하기
+                            </button>
+
+                            <!-- Mini Result (hidden at first, shown on click) -->
+                            <div id="nutrition-result" class="hidden text-left bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-lg animate-fade-in text-xs space-y-2 transition-colors duration-300">
+                                <div class="font-bold text-slate-800 dark:text-slate-200">🤖 AI 분석 리포트</div>
+                                <p class="text-slate-600 dark:text-slate-400">총 칼로리: <span class="text-brand-neon font-semibold">820 kcal</span>. 성장에 필요한 단백질 함량이 32g으로 매우 높게 보충되는 든든한 고칼로리 영양 식단입니다.</p>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden flex">
+                                    <div class="bg-amber-400 h-full" style="width: 55%" title="탄수화물"></div>
+                                    <div class="bg-brand-neon h-full" style="width: 25%" title="단백질"></div>
+                                    <div class="bg-red-400 h-full" style="width: 20%" title="지방"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] text-slate-500">
+                                    <span>탄수화물 55%</span>
+                                    <span>단백질 25%</span>
+                                    <span>지방 20%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: IoT 스마트 화분 -->
+                <div id="project-card-3" class="project-card hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="text-xs font-bold px-3 py-1 bg-brand-neon/10 dark:bg-brand-neon/20 text-brand-neon border border-brand-neon/20 dark:border-brand-neon/30 rounded-full uppercase">IoT & Hardware</span>
+                            <span class="text-xs font-bold px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-full">공동 프로젝트 (하드웨어/임베디드)</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">아두이노 기반 교실 공기정화 반려식물 스마트 화분</h3>
+                        <p class="text-slate-300 leading-relaxed mb-6 text-slate-600 dark:text-slate-300">
+                            교실 내 미세먼지와 실내 환경 개선을 위한 프로젝트로, 토양 수분 센서, 온습도 센서, CDS 조도 센서를 연동하여 물이 필요한 경우 솔레노이드 밸브를 통해 자동으로 급수하고, LED 라이트를 켜 식물의 광합성을 돕는 지능형 IoT 화분 시스템입니다.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider">주요 기능</h4>
+                            <ul class="space-y-2.5 text-slate-600 dark:text-slate-300 text-sm">
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-neon mt-1 mr-2.5"></i> 아두이노 Uno 및 ESP8266 와이파이 모듈 연동 센서 데이터 전송</li>
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-neon mt-1 mr-2.5"></i> 토양 수분이 30% 미만으로 떨어질 경우 워터 펌프 자동 3초 기동</li>
+                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-brand-neon mt-1 mr-2.5"></i> 실시간 대시보드 웹페이지 연동 (온습도 기록 추이)</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">Arduino (C++)</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">NodeMCU</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">Firebase Firestore</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium border border-slate-200 dark:border-slate-700/40">IoT Sensors</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Side: IoT Dashboard Mockup -->
+                    <div class="lg:col-span-5 bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 transition-colors duration-300 shadow-sm dark:shadow-none">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-md font-bold text-slate-800 dark:text-white flex items-center">
+                                <i class="fa-solid fa-chart-line text-brand-neon mr-2"></i> 실시간 관제 대시보드
+                            </h4>
+                            <span class="flex h-2.5 w-2.5 relative">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-neon opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-neon"></span>
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl text-center transition-colors duration-300 shadow-sm dark:shadow-none">
+                                <div class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">🌱 토양 수분</div>
+                                <div id="soil-moisture" class="text-xl font-bold text-brand-neon code-font mt-1">42%</div>
+                                <div class="text-[9px] text-slate-400 mt-0.5">상태 양호</div>
+                            </div>
+                            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-xl text-center transition-colors duration-300 shadow-sm dark:shadow-none">
+                                <div class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">🌡️ 교실 온도</div>
+                                <div class="text-xl font-bold text-slate-800 dark:text-slate-200 code-font mt-1">24.2°C</div>
+                                <div class="text-[9px] text-slate-400 mt-0.5">쾌적함</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl space-y-3 transition-colors duration-300 shadow-sm dark:shadow-none">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-slate-700 dark:text-slate-300 font-semibold">워터 펌프 강제 급수</span>
+                                <button onclick="triggerWaterPump()" id="pump-btn" class="bg-brand-blue hover:bg-blue-600 text-white text-[11px] px-3 py-1.5 rounded-lg font-bold transition-all shadow-sm">
+                                    급수 가동
+                                </button>
+                            </div>
+                            <div id="pump-status-bar" class="hidden text-center bg-brand-blue/10 border border-brand-blue/25 text-brand-blue text-[11px] py-1.5 rounded-lg animate-pulse font-medium">
+                                💧 워터펌프 작동 중 (수분 수치 상승 중...)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-slate-100/50 dark:bg-slate-950/40 border-t border-slate-200 dark:border-slate-850 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white">My Skills & Languages</h2>
+                <p class="text-slate-600 dark:text-slate-400">데이터 과학부터 기기 제어, 웹 인터랙션까지 목적에 맞는 컴퓨터 언어를 탐구하고 활용합니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Skill group 1 -->
+                <div class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl transition-colors duration-300 shadow-sm dark:shadow-none">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-brand-blue/10 text-brand-blue flex items-center justify-center">
+                            <i class="fa-solid fa-terminal text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Programming Languages</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-600 dark:text-slate-300">Python (데이터 예측 / 머신러닝)</span>
+                                <span class="text-brand-blue">85%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-blue h-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-600 dark:text-slate-300">JavaScript (웹/앱 동적 제어)</span>
+                                <span class="text-brand-blue">75%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-blue h-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-600 dark:text-slate-300">C/C++ (아두이노 시스템 제어)</span>
+                                <span class="text-brand-blue">70%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-blue h-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill group 2 -->
+                <div class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl transition-colors duration-300 shadow-sm dark:shadow-none">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-brand-purple/10 text-brand-purple flex items-center justify-center">
+                            <i class="fa-solid fa-file-code text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Markup & Query</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-600 dark:text-slate-300">HTML5 / CSS3 (구조 설계 / 반응형 UI)</span>
+                                <span class="text-brand-purple">80%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-purple h-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-600 dark:text-slate-300">SQL (관계형 데이터 구조화)</span>
+                                <span class="text-brand-purple">60%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-purple h-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="text-slate-600 dark:text-slate-300">Markdown / LaTeX (기획서 & 기술문서)</span>
+                                <span class="text-brand-purple">75%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-purple h-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill group 3 -->
+                <div class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 p-6 rounded-2xl transition-colors duration-300 shadow-sm dark:shadow-none">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-brand-neon/10 text-brand-neon flex items-center justify-center">
+                            <i class="fa-solid fa-brain text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Project Match</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-3 bg-slate-50 dark:bg-slate-950/40 rounded-xl border border-slate-100 dark:border-slate-800 transition-colors">
+                            <div class="font-bold text-xs text-brand-blue mb-0.5">🐍 Python + Pandas</div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400">울산 교통량 공공 데이터 전처리 및 머신러닝 예측 모델링 설계</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-950/40 rounded-xl border border-slate-100 dark:border-slate-800 transition-colors">
+                            <div class="font-bold text-xs text-brand-purple mb-0.5">⚡ JavaScript + CSS</div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400">급식 알리미 UI 정렬 및 대화형 시뮬레이션 알고리즘 제어</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-950/40 rounded-xl border border-slate-100 dark:border-slate-800 transition-colors">
+                            <div class="font-bold text-xs text-brand-neon mb-0.5">⚙️ C/C++ + Arduino</div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400">조도·수분 센서 데이터를 활용한 IoT 스마트 화분 구동 펌웨어 작성</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Sandbox Playground Section (Interactive Feature) -->
+    <section id="playground" class="py-20 bg-slate-50 dark:bg-slate-900/20 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-gradient-to-r from-brand-blue/10 to-brand-purple/10 dark:from-brand-blue/15 dark:to-brand-purple/15 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 md:p-12 relative overflow-hidden transition-colors duration-300">
+                <div class="absolute -right-16 -bottom-16 w-48 h-48 bg-brand-blue/10 blur-3xl rounded-full"></div>
+                <div class="relative z-10">
+                    <div class="inline-block bg-brand-neon/15 text-brand-neon border border-brand-neon/20 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+                        ⚡ 실시간 실행 샌드박스
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4">코딩 퀴즈 & 성능 체커</h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm mb-6 max-w-xl">
+                        간단한 알고리즘을 수행하고, 컴퓨터가 연산하는 성능을 직접 실시간으로 체크할 수 있는 미니 가상 인터프리터 데모를 실행해 보세요.
+                    </p>
+
+                    <!-- Interactive Code Box -->
+                    <div class="bg-slate-100 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-850 rounded-xl overflow-hidden mb-6 shadow-inner transition-colors duration-300">
+                        <div class="flex justify-between items-center bg-slate-200/60 dark:bg-slate-900 px-4 py-2 text-xs border-b border-slate-200 dark:border-slate-800">
+                            <span class="code-font text-brand-blue font-semibold">binary_search_speed.js</span>
+                            <span class="text-slate-500 dark:text-slate-400">체크 모듈</span>
+                        </div>
+                        <div class="p-4">
+                            <p class="code-font text-slate-500 dark:text-slate-400 text-xs mb-3">// 아래의 배열 크기를 늘리고 연산을 시작해보세요.</p>
+                            <div class="flex flex-col sm:flex-row gap-4 items-center mb-4">
+                                <div class="w-full sm:w-1/2">
+                                    <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-2">테스트 대상 무작위 배열 크기</label>
+                                    <select id="arr-size" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-700 dark:text-slate-300 text-xs">
+                                        <option value="1000">1,000 개 (소규모)</option>
+                                        <option value="50000">50,000 개 (중규모)</option>
+                                        <option value="500000" selected>500,000 개 (대규모 데이터)</option>
+                                    </select>
+                                </div>
+                                <div class="w-full sm:w-1/2">
+                                    <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-2">찾고자 하는 특정 숫자</label>
+                                    <input type="number" id="target-num" value="2841" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-700 dark:text-slate-300 text-xs code-font">
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <button onclick="runBinarySearch()" class="flex-1 bg-brand-neon hover:bg-emerald-600 text-white dark:text-[#0b0f19] font-bold text-xs py-3 rounded-lg transition-all shadow-sm">
+                                    <i class="fa-solid fa-play mr-1"></i> 이진 탐색 알고리즘 실행
+                                </button>
+                                <button onclick="runLinearSearch()" class="flex-1 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs py-3 rounded-lg border border-slate-200 dark:border-slate-750 transition-all shadow-sm">
+                                    <i class="fa-solid fa-magnifying-glass mr-1"></i> 선형 탐색 비교 실행
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sandbox Result Info -->
+                    <div id="sandbox-log" class="bg-white dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-xs code-font text-slate-500 dark:text-slate-400 min-h-[80px] flex items-center justify-center transition-colors duration-300 shadow-inner">
+                        <div class="text-center">
+                            <p><i class="fa-solid fa-terminal text-brand-blue mb-1 text-base"></i></p>
+                            <p>실행 결과를 출력하려면 위의 버튼을 클릭하세요.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800/80 py-12 bg-white dark:bg-slate-950/60 text-slate-500 dark:text-slate-400 text-xs transition-colors duration-300">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-1">언양고등학교 3학년</p>
+                <p>2026 정보 교과 과정 & 자율 정보 동아리 연합 성과물</p>
+            </div>
+            <div class="flex space-x-6">
+                <span class="hover:text-slate-800 dark:hover:text-white cursor-default transition-colors">Designed by DEV</span>
+                <a href="#hero" class="text-brand-blue hover:underline">Top <i class="fa-solid fa-arrow-up ml-1"></i></a>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-slate-400 dark:text-slate-600">
+            &copy; 2026. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Interactive script to handle views and simulations -->
+    <script>
+        // 다크모드 토글 함수
+        function toggleDarkMode() {
+            const htmlClass = document.documentElement.classList;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (htmlClass.contains('dark')) {
+                htmlClass.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-sun text-lg'; // 태양 아이콘으로 변경
+            } else {
+                htmlClass.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-moon text-lg'; // 달 아이콘으로 변경
+            }
+            // 테마 변경 시에도 미적으로 깔끔하도록 스위치 테일 및 버튼들의 디자인을 연동합니다.
+            updateTabButtonStyles();
+        }
+
+        // 초기 아이콘 상태 세팅
+        window.addEventListener('DOMContentLoaded', () => {
+            const themeIcon = document.getElementById('theme-icon');
+            if (document.documentElement.classList.contains('dark')) {
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            }
+            updateTabButtonStyles();
+        });
+
+        // Tab switching logic
+        function switchProject(index) {
+            // Hide all project cards
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.classList.add('hidden');
+            });
+            // Show target card
+            document.getElementById(`project-card-${index}`).classList.remove('hidden');
+
+            // Toggle active style of tab buttons
+            document.querySelectorAll('.project-tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-brand-blue', 'text-white');
+                btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-700');
+            });
+
+            const activeBtn = document.getElementById(`tab-btn-${index}`);
+            activeBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400', 'hover:bg-slate-100', 'dark:hover:bg-slate-700');
+            activeBtn.classList.add('active', 'bg-brand-blue', 'text-white');
+        }
+
+        // 테마 상태에 맞는 프로젝트 선택 탭 스타일 동기화
+        function updateTabButtonStyles() {
+            document.querySelectorAll('.project-tab-btn').forEach(btn => {
+                if (!btn.classList.contains('active')) {
+                    btn.className = "project-tab-btn bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 px-5 py-2.5 rounded-xl font-semibold text-sm border border-slate-200 dark:border-slate-700/60 transition-all";
+                }
+            });
+        }
+
+        // Project 1 Simulation Logic (Traffic)
+        function runTrafficSim() {
+            const densityA = parseInt(document.getElementById('density-a').value);
+            const densityB = parseInt(document.getElementById('density-b').value);
+
+            document.getElementById('density-a-val').textContent = densityA + '%';
+            document.getElementById('density-b-val').textContent = densityB + '%';
+
+            // Custom math formulas to show mock-simulation result
+            const normalDelay = Math.round(30 + (densityA * 0.4) + (densityB * 0.3));
+            const aiDelay = Math.round(18 + (densityA * 0.18) + (densityB * 0.12));
+            const reduction = Math.round(((normalDelay - aiDelay) / normalDelay) * 100);
+
+            document.getElementById('delay-normal').textContent = normalDelay + 's';
+            document.getElementById('delay-ai').textContent = aiDelay + 's';
+            document.getElementById('delay-percent').textContent = reduction + '%';
+        }
+
+        // Run Traffic Sim on load
+        runTrafficSim();
+
+        // Project 2 Simulation Logic (Nutrition Check)
+        function checkNutrition() {
+            const resultBox = document.getElementById('nutrition-result');
+            resultBox.classList.remove('hidden');
+            resultBox.style.opacity = '0';
+            setTimeout(() => {
+                resultBox.style.opacity = '1';
+                resultBox.style.transition = 'opacity 0.5s ease';
+            }, 50);
+        }
+
+        // Project 3 IoT simulation logic
+        let pumpTimer = null;
+        function triggerWaterPump() {
+            const btn = document.getElementById('pump-btn');
+            const statusBar = document.getElementById('pump-status-bar');
+            const moistureVal = document.getElementById('soil-moisture');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
+            statusBar.classList.remove('hidden');
+
+            let moisture = 42;
+            let count = 0;
+
+            if(pumpTimer) clearInterval(pumpTimer);
+
+            pumpTimer = setInterval(() => {
+                count++;
+                moisture += Math.round(Math.random() * 5 + 3);
+                if (moisture > 78) moisture = 78;
+                moistureVal.textContent = moisture + '%';
+                
+                if (count >= 5) {
+                    clearInterval(pumpTimer);
+                    statusBar.classList.add('hidden');
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50');
+                    moistureVal.textContent = '72%'; // Final stable value
+                }
+            }, 800);
+        }
+
+        // Playground: Binary Search Simulator
+        function runBinarySearch() {
+            const size = parseInt(document.getElementById('arr-size').value);
+            const target = parseInt(document.getElementById('target-num').value);
+            const logBox = document.getElementById('sandbox-log');
+
+            logBox.innerHTML = `<span class="text-brand-neon">배열 정렬 및 생성 중...</span>`;
+
+            setTimeout(() => {
+                // Generate a sorted array
+                let arr = [];
+                let curr = 1;
+                for(let i=0; i<size; i++) {
+                    curr += Math.round(Math.random() * 5 + 1);
+                    arr.push(curr);
+                }
+
+                const startTime = performance.now();
+                
+                // Binary Search Implementation
+                let low = 0;
+                let high = arr.length - 1;
+                let steps = 0;
+                let foundIndex = -1;
+
+                while (low <= high) {
+                    steps++;
+                    let mid = Math.floor((low + high) / 2);
+                    if (arr[mid] === target) {
+                        foundIndex = mid;
+                        break;
+                    } else if (arr[mid] < target) {
+                        low = mid + 1;
+                    } else {
+                        high = mid - 1;
+                    }
+                }
+
+                const endTime = performance.now();
+                const totalDuration = (endTime - startTime).toFixed(4);
+
+                let logHtml = `
+                    <div class="text-left w-full space-y-2">
+                        <div class="text-brand-neon font-bold"><i class="fa-solid fa-circle-check"></i> 이진 탐색(Binary Search) 수행 완료</div>
+                        <p class="text-[11px] text-slate-600 dark:text-slate-300">데이터 크기: <span class="text-slate-900 dark:text-white font-semibold">${size.toLocaleString()}개</span> | 찾는 숫자: <span class="text-slate-900 dark:text-white font-semibold">${target}</span></p>
+                        <p class="text-[11px] text-slate-600 dark:text-slate-300">탐색 결과: ${foundIndex !== -1 ? `<span class="text-brand-blue font-bold">${foundIndex}번째 인덱스에서 발견</span>` : `<span class="text-red-500 dark:text-red-400">배열 내 미존재 (근접값 매칭 실패)</span>`}</p>
+                        <div class="grid grid-cols-2 gap-2 mt-2 bg-slate-50 dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors duration-300">
+                            <div class="text-slate-700 dark:text-slate-300">연산 단계(Step): <span class="text-brand-neon font-bold">${steps}회</span></div>
+                            <div class="text-slate-700 dark:text-slate-300">소요 시간: <span class="text-brand-blue font-bold">${totalDuration}ms</span></div>
+                        </div>
+                    </div>
+                `;
+                logBox.innerHTML = logHtml;
+            }, 300);
+        }
+
+        // Playground: Linear Search Simulator
+        function runLinearSearch() {
+            const size = parseInt(document.getElementById('arr-size').value);
+            const target = parseInt(document.getElementById('target-num').value);
+            const logBox = document.getElementById('sandbox-log');
+
+            logBox.innerHTML = `<span class="text-amber-500">순차 탐색 수행 중...</span>`;
+
+            setTimeout(() => {
+                // Generate a sorted array
+                let arr = [];
+                let curr = 1;
+                for(let i=0; i<size; i++) {
+                    curr += Math.round(Math.random() * 5 + 1);
+                    arr.push(curr);
+                }
+
+                const startTime = performance.now();
+                
+                // Linear Search Implementation (worst case)
+                let steps = 0;
+                let foundIndex = -1;
+                for(let i=0; i<arr.length; i++) {
+                    steps++;
+                    if(arr[i] === target) {
+                        foundIndex = i;
+                        break;
+                    }
+                }
+
+                const endTime = performance.now();
+                const totalDuration = (endTime - startTime).toFixed(4);
+
+                let logHtml = `
+                    <div class="text-left w-full space-y-2">
+                        <div class="text-amber-500 font-bold"><i class="fa-solid fa-triangle-exclamation"></i> 선형 탐색(Linear Search) 수행 완료</div>
+                        <p class="text-[11px] text-slate-600 dark:text-slate-300">데이터 크기: <span class="text-slate-900 dark:text-white font-semibold">${size.toLocaleString()}개</span> | 찾는 숫자: <span class="text-slate-900 dark:text-white font-semibold">${target}</span></p>
+                        <p class="text-[11px] text-slate-600 dark:text-slate-300">탐색 결과: ${foundIndex !== -1 ? `<span class="text-brand-blue font-bold">${foundIndex}번째 인덱스</span>` : `<span class="text-red-500 dark:text-red-400">미존재</span>`}</p>
+                        <div class="grid grid-cols-2 gap-2 mt-2 bg-slate-50 dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors duration-300">
+                            <div class="text-slate-700 dark:text-slate-300">연산 단계(Step): <span class="text-amber-500 font-bold">${steps.toLocaleString()}회</span></div>
+                            <div class="text-slate-700 dark:text-slate-300">소요 시간: <span class="text-brand-blue font-bold">${totalDuration}ms</span></div>
+                        </div>
+                        <p class="text-[10px] text-slate-500 mt-1">* 대규모 배열에서 선형 탐색은 이진 탐색보다 훨씬 더 많은 연산 단계가 필요합니다.</p>
+                    </div>
+                `;
+                logBox.innerHTML = logHtml;
+            }, 300);
+        }
+    </script>
+</body>
+</html>
